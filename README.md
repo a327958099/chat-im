@@ -1,7 +1,7 @@
 # chat-im
 web即时聊天
 
-基本workerman开发的web端即时通信（可参照workerman安装方式）
+基于workerman开发的web端即时通信（可参照workerman安装方式）
 
 请安装redis扩展
 
@@ -11,7 +11,6 @@ demo：http://im.skeep.cc
 
 
 运行方式
-
 cd MessageWorker
 
 debug模式
