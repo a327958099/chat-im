@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="//images.skeep.cc/favicon.ico">
+    <link rel="stylesheet" href="/static/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <title>Skeep</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="im">
+            <!--聊天列表-->
+            <div class="middle on">
+                <div class="wx_search">
+                    <input type="text" placeholder="搜索" unselectable="on">
+                </div>
+                <div class="office_text">
+                    <ul class="user_list"></ul>
+                </div>
+            </div>
+            <div class="talk_window">
+                <div class="windows_top">
+                    <div class="windows_top_box">
+                        <span class="nickname"></span>
+                    </div>
+                </div>
+
+                <!--聊天内容-->
+                <div class="windows_body">
+                    <div class="office_text" style="height: 100%;">
+                        <ul class="content"></ul>
+                    </div>
+                </div>
+
+                <div class="windows_input" id="talkbox">
+                    <div class="ico">
+                        <img src="/static/face/face.png" class="face-btn" style="width:24px;">
+                    </div>
+                    <div class="input_box">
+                        <textarea class="input" id="input"></textarea>
+                    </div>
+                    <button id="send">发送</button>
+
+                    <!-- 表情 -->
+                    <div class="face"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 会话 -->
+    <script type="text/template" id="chat-template">
+        {{each}}
+        <li chatId="{{$value.chatId}}" nickname="{{$value.nickname}}" uid="{{$value.id}}">
+            <div class="user_head"><img src="{{$value.headimgurl}}" /></div>
+            <div class="user_text">
+                <p class="user_name">
+                    <div class="title">{{$value.nickname}}</div>
+                    <div class="desc">{{#$value.lastMsg}}</div>
+                </p>
+            </div>
+            <div class="user_time toast-{{$value.chatId}}"></div>
+        </li>
+        {{/each}}
+    </script>
+
+    <!-- 消息 -->
+    <script type="text/template" id="msg-template">
+        {{each}}
+        {{if $value.isShow == 1}}
+        <li class="lasttime">{{$value.isShowTime}}</li>
+        {{/if}}
+        <li class="{{$value.classname}}" chatid="{{$value.chatId}}" msgid="{{$value.msgId}}">
+            <img src="{{$value.headimgurl}}" class="headimgurl">
+            <span>{{#$value.content}}</span>
+            {{if $value.classname == 'me'}}
+            <i class="back">撤回</i>
+            {{/if}}
+        </li>
+        {{/each}}
+    </script>
+
+    <!-- 当前会话 -->
+    <script type="text/template" id="current-chat">{"chatId":"","to":""}</script>
+    <!-- 会话/联系人 -->
+    <script type="text/template" id="chat-list">[]</script>
+
+    <script type="text/javascript" src="//cdn.skeep.cc/js/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.skeep.cc/js/template-web.js"></script>
+    <script type="text/javascript" src="/static/js/websocket.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+</body>
+
+</html>
