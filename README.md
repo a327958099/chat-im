@@ -5,7 +5,7 @@ web即时聊天
 
 请安装redis扩展
 
-消息使用存储使用redis List队列
+消息存储使用redis List队列
 
 demo：http://im.skeep.cc
 
